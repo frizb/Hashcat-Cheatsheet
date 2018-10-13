@@ -85,3 +85,13 @@ http://openwall.info/wiki/john/sample-hashes
 ## Crack a zip password
 `zip2john Zipfile.zip | cut -d ':' -f 2 > hashes.txt`  
 `hashcat -a 0 -m 13600 hashes.txt /usr/share/wordlists/rockyou.txt`  
+
+Hashcat appears to have issues with some zip hash formats generated from zip2john.  You can fix this by editing the zip hash contents to align with the example zip hash format found on the hash cat example page:
+`$zip2$*0*3*0*b5d2b7bf57ad5e86a55c400509c672bd*d218*0**ca3d736d03a34165cfa9*$/zip2$`  
+
+For example, i had the hash:  
+`$zip2$*0*3*0*6f1cd9ae3480669b2b61dbb4c0fc7ce3*fef9*299a*ZFILE*Access Control.zip*0*4d*9dcc2150285eb46bd46a*$/zip2$`  
+I deleted some of the "extra" star field values to make it align better with the example hash above.
+`$zip2$*0*3*0*6f1cd9ae3480669b2b61dbb4c0fc7ce3*fef9*0**9dcc2150285eb46bd46a*$/zip2$`
+
+And it worked just fine.
