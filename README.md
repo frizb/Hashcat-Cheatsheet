@@ -8,7 +8,7 @@ https://hashcat.net/wiki/doku.php?id=hashcat
 
 Example Hashes: https://hashcat.net/wiki/doku.php?id=example_hashes
 
-## Using hashcat
+## Using hashcat and a dictionary
 Create a .hash file with all the hashes you want to crack puthasheshere.hash: $1$O3JMY.Tw$AdLnLjQ/5jXF9.MTp3gHv/
 
 Hashcat example cracking Linux md5crypt passwords $1$ using rockyou:  
@@ -21,6 +21,22 @@ Hashcat example cracking Wordpress passwords using rockyou:
 Sample Hashes
 http://openwall.info/wiki/john/sample-hashes
 
+## Using hashcat bruteforcing 
+```
+predefined charsets
+?l = abcdefghijklmnopqrstuvwxyz
+?u = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+?d = 0123456789
+?s = «space»!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+?a = ?l?u?d?s
+?b = 0x00 - 0xff
+```
+
+?l?d?u is the same as:  
+?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789  
+  
+Brute force all passwords length 1-8 with possible characters A-Z a-z 0-9   
+`hashcat64 -m 500 hashes.txt -a  3  ?1?1?1?1?1?1?1?1 --increment -1 ?l?d?u`  
 
 ## Cracking Linux Hashes - /etc/shadow file  
 
