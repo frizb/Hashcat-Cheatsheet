@@ -83,5 +83,5 @@ http://openwall.info/wiki/john/sample-hashes
 `unshadow passwd-file.txt shadow-file.txt > unshadowed.txt`  
 
 ## Crack a zip password
-`zip2john Zipfile.zip > hashes.zip`  
+`zip2john Zipfile.zip | cut -d ':' -f 2 > hashes.txt`  
 `hashcat -a 0 -m 13600 hashes.txt /usr/share/wordlists/rockyou.txt`  
