@@ -1,5 +1,5 @@
 # Hashcat-Cheatsheet
-Hashcat Cheatsheet for OSCP\
+Hashcat Cheatsheet for OSCP
 
 
 ## Identify Hashes
@@ -22,25 +22,31 @@ http://openwall.info/wiki/john/sample-hashes
 
 ## Cracking Linux Hashes - /etc/shadow file  
 
- 500 | md5crypt $1$, MD5(Unix)                          | Operating-Systems
-3200 | bcrypt $2*$, Blowfish(Unix)                      | Operating-Systems
-7400 | sha256crypt $5$, SHA256(Unix)                    | Operating-Systems
-1800 | sha512crypt $6$, SHA512(Unix)                    | Operating-Systems
+| ID | Description                                      | Type |
+|----|--------------------------------------------------|------|
+| 500 | md5crypt $1$, MD5(Unix)                          | Operating-Systems|
+|200 | bcrypt $2*$, Blowfish(Unix)                      | Operating-Systems|
+|400 | sha256crypt $5$, SHA256(Unix)                    | Operating-Systems|
+|1800 | sha512crypt $6$, SHA512(Unix)                    | Operating-Systems|
 
 ## Cracking Windows Hashes  
 
-3000 | LM                                               | Operating-Systems
-1000 | NTLM                                             | Operating-Systems
+| ID | Description                                      | Type |
+|----|--------------------------------------------------|------|
+|3000 | LM                                               | Operating-Systems|
+|1000 | NTLM                                             | Operating-Systems|
 
 ## Cracking Common Application Hashes  
 
-  900 | MD4                                              | Raw Hash
-    0 | MD5                                              | Raw Hash
- 5100 | Half MD5                                         | Raw Hash
-  100 | SHA1                                             | Raw Hash
-10800 | SHA-384                                          | Raw Hash
- 1400 | SHA-256                                          | Raw Hash
- 1700 | SHA-512                                          | Raw Hash
+| ID | Description                                      | Type |
+|----|--------------------------------------------------|------|
+| 900 | MD4                                              | Raw Hash|
+|   0 | MD5                                              | Raw Hash|
+|5100 | Half MD5                                         | Raw Hash|
+|  100 | SHA1                                             | Raw Hash|
+|10800 | SHA-384                                          | Raw Hash|
+| 1400 | SHA-256                                          | Raw Hash|
+| 1700 | SHA-512                                          | Raw Hash|
 
 
 ## To crack linux hashes you must first unshadow them
