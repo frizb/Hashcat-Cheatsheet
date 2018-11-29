@@ -92,6 +92,21 @@ Brute force all passwords length 1-8 with possible characters A-Z a-z 0-9
 |  10700 | PDF 1.7 Level 8 (Acrobat 10 - 11)                | Documents|
 |  16200 | Apple Secure Notes                               | Documents|
 
+
+## Cracking Commmon Database Hash Formats
+|     ID | Description                                      | Type |
+|--------|--------------------------------------------------|------|
+|     12 | PostgreSQL                                       | Database Server |
+|    131 | MSSQL (2000)                                     | Database Server |
+|    132 | MSSQL (2005)                                     | Database Server |
+|   1731 | MSSQL (2012, 2014)                               | Database Server |
+|    200 | MySQL323                                         | Database Server |
+|    300 | MySQL4.1/MySQL5                                  | Database Server | 
+|   3100 | Oracle H: Type (Oracle 7+)                       | Database Server |
+|    112 | Oracle S: Type (Oracle 11+)                      | Database Server |
+|  12300 | Oracle T: Type (Oracle 12+)                      | Database Server |
+|   8000 | Sybase ASE                                       | Database Server |
+
 ## To crack linux hashes you must first unshadow them
 
 `unshadow passwd-file.txt shadow-file.txt`  
