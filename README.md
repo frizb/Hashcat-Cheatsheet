@@ -21,6 +21,17 @@ Hashcat example cracking Wordpress passwords using rockyou:
 Sample Hashes
 http://openwall.info/wiki/john/sample-hashes
 
+## HashCat One Rule to Rule them All  
+Not So Secure has built a custom rule that I have had luck with in the past:  
+https://www.notsosecure.com/one-rule-to-rule-them-all/  
+The rule can be downloaded from their Github site:  
+https://github.com/NotSoSecure/password_cracking_rules  
+
+I typically drop OneRuleToRuleThemAll.rule into the rules subfolder and run it like this from my windows box (based on the notsosecure article):
+```
+hashcat64.exe --force -m300 --status -w3 -o found.txt --remove --potfile-disable -r rules\OneRuleToRuleThemAll.rule hash.txt rockyou.txt
+```
+
 ## Using hashcat bruteforcing 
 ```
 predefined charsets
