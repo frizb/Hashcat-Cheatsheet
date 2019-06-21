@@ -131,7 +131,7 @@ Brute force all passwords length 1-8 with possible characters A-Z a-z 0-9
 After grabbing or dumping the NTDS.dit and SYSTEM registry hive or dumping LSASS memory from a Windows box, you will often end up with NTLM hashes.  
 
 | Path | Description  |
----------------------------------
+| ----- | ------------|
 | C:\Windows\NTDS\ntds.dit |  Active Directory database | 
 | C:\Windows\System32\config\SYSTEM |  Registry hive containing the key used to encrypt hashes |
 
