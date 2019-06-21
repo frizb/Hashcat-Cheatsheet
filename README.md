@@ -8,6 +8,14 @@ https://hashcat.net/wiki/doku.php?id=hashcat
 
 Example Hashes: https://hashcat.net/wiki/doku.php?id=example_hashes
 
+## MAX POWER!
+I have found that I can squeeze some more power out of my hash cracking by adding these parameters:
+```
+--force -O -w 4 --opencl-device-types 1,2
+```
+These will force Hashcat to use the CUDA GPU interface which is buggy but provides more performance (–force) , will Optimize for 32 characters or less passwords (-O) and will set the workload to "Insane" (-w 4) which is supposed to make your computer effectively unusable during the cracking process.
+Finally "--opencl-device-types 1,2 " will force HashCat to use BOTH the GPU and the CPU to handle the cracking.
+
 ## Using hashcat and a dictionary
 Create a .hash file with all the hashes you want to crack puthasheshere.hash: $1$O3JMY.Tw$AdLnLjQ/5jXF9.MTp3gHv/
 
@@ -117,6 +125,48 @@ Brute force all passwords length 1-8 with possible characters A-Z a-z 0-9
 |    112 | Oracle S: Type (Oracle 11+)                      | Database Server | ac5f1e62d21fd0529428b84d42e8955b04966703:38445748184477378130 | 
 |  12300 | Oracle T: Type (Oracle 12+)                      | Database Server | 78281A9C0CF626BD05EFC4F41B515B61D6C4D95A250CD4A605CA0EF97168D670EBCB5673B6F5A2FB9CC4E0C0101E659C0C4E3B9B3BEDA846CD15508E88685A2334141655046766111066420254008225 |
 |   8000 | Sybase ASE                                       | Database Server | 0xc00778168388631428230545ed2c976790af96768afa0806fe6c0da3b28f3e132137eac56f9bad027ea2 |
+
+## Cracking NTLM hashes of a NTDS.dit Dump from a Domain Controller
+
+After grabbing or dumping the NTDS.dit and SYSTEM registry hive.
+| Path | Description  |
+---------------------------------
+| C:\Windows\NTDS\ntds.dit |  Active Directory database | 
+| C:\Windows\System32\config\SYSTEM |  Registry hive containing the key used to encrypt hashes |
+
+And using Impacket to dump the hashes
+```
+impacket-secretsdump -system SYSTEM -ntds ntds.dit -hashes lmhash:nthash LOCAL -outputfile ntlm-extract
+```
+You can crack the NTLM hash dump usign the following hashcat syntax:
+```
+hashcat64 -m 1000 -a 0 -w 4 --force --opencl-device-types 1,2 -O d:\hashsample.hash "d:\WORDLISTS\realuniq.lst" -r OneRuleToRuleThemAll.rule
+```
+*Benchmark using a Nvidia 2060 GTX:*
+Speed: 7000 MH/s
+Recovery Rate: 12.47%
+Elapsed Time: 2 Hours 35 Minutes
+
+## Cracking Hashes from Kerboroasting - KRB5TGS
+
+A service principal name (SPN) is a unique identifier of a service instance. SPNs are used by Kerberos authentication to associate a service instance with a service logon account. This allows a client application to request that the service authenticate an account even if the client does not have the account name.
+KRB5TGS - Kerberoasting Service Accounts that use SPN Once you have identified a Kerberoastable service account (Bloodhound? Powershell Empire? - likely a MS SQL Server Service Account), any AD user can request a krb5tgs hash from it which can be used to crack the password.
+
+Based on my benchmarking, KRB5TGS cracking is 28 times slower than NTLM.
+
+Hashcat supports multiple versions of the KRB5TGS hash which can easily be identified by the number between the dollar signs in the hash itself.
+
+* 13100 - Type 23 - $krb5tgs$23$
+* 19600 - Type 17 - $krb5tgs$17$
+* 19700 - Type 18 - $krb5tgs$18$
+
+KRB5TGS Type 23 - Crackstation humans only word list with OneRuleToRuleThemAll mutations rule list.
+```
+hashcat64 -m 13100 -a 0 -w 4 --force --opencl-device-types 1,2 -O d:\krb5tgs.hash d:\WORDLISTS\realhuman_phill.txt -r OneRuleToRuleThemAll.rule	
+```
+*Benchmark using a Nvidia 2060 GTX:*
+Speed: 250 MH/s
+Elapsed Time: 9 Minutes
 
 ## To crack linux hashes you must first unshadow them
 
