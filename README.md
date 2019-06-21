@@ -126,9 +126,10 @@ Brute force all passwords length 1-8 with possible characters A-Z a-z 0-9
 |  12300 | Oracle T: Type (Oracle 12+)                      | Database Server | 78281A9C0CF626BD05EFC4F41B515B61D6C4D95A250CD4A605CA0EF97168D670EBCB5673B6F5A2FB9CC4E0C0101E659C0C4E3B9B3BEDA846CD15508E88685A2334141655046766111066420254008225 |
 |   8000 | Sybase ASE                                       | Database Server | 0xc00778168388631428230545ed2c976790af96768afa0806fe6c0da3b28f3e132137eac56f9bad027ea2 |
 
-## Cracking NTLM hashes of a NTDS.dit Dump from a Domain Controller
+## Cracking NTLM hashes 
 
-After grabbing or dumping the NTDS.dit and SYSTEM registry hive.
+After grabbing or dumping the NTDS.dit and SYSTEM registry hive or dumping LSASS memory from a Windows box, you will often end up with NTLM hashes.  
+
 | Path | Description  |
 ---------------------------------
 | C:\Windows\NTDS\ntds.dit |  Active Directory database | 
