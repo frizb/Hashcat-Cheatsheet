@@ -183,3 +183,21 @@ Hashcat appears to have issues with some zip hash formats generated from zip2joh
 `$zip2$*0*3*0*b5d2b7bf57ad5e86a55c400509c672bd*d218*0**ca3d736d03a34165cfa9*$/zip2$`  
 
 John seems to accept a wider range of zip formats for cracking.
+
+## PRINCE Password Generation
+PRINCE (PRobability INfinite Chained Elements) is a hashcat utility for randomly generating probable passwords:
+```
+pp64.bin --pw-min=8 < dict.txt | head -20 shuf dict.txt | pp64.bin --pw-min=8 | head -20
+```
+Reference:  
+https://github.com/hashcat/princeprocessor
+
+## Purple Rain
+Purple Rain attack uses a combination of Prince, a dictionary and random Mutation rules to dynamicaly create infinite combinations of passwords.
+
+```
+shuf dict.txt | pp64.bin --pw-min=8 | hashcat -a 0 -m #type -w 4 -O hashes.txt -g 300000
+```
+
+Reference:  
+https://www.netmux.com/blog/purple-rain-attack
