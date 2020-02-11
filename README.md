@@ -157,9 +157,10 @@ Based on my benchmarking, KRB5TGS cracking is 28 times slower than NTLM.
 
 Hashcat supports multiple versions of the KRB5TGS hash which can easily be identified by the number between the dollar signs in the hash itself.
 
-* 13100 - Type 23 - $krb5tgs$23$
-* 19600 - Type 17 - $krb5tgs$17$
-* 19700 - Type 18 - $krb5tgs$18$
+* 13100 - Type 23       - $krb5tgs$23$
+* 19600 - Type 17       - $krb5tgs$17$
+* 19700 - Type 18       - $krb5tgs$18$
+* 18200 - ASREP Type 23 - $krb5asrep$23$
 
 KRB5TGS Type 23 - Crackstation humans only word list with OneRuleToRuleThemAll mutations rule list.
 ```
