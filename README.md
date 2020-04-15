@@ -170,6 +170,12 @@ hashcat64 -m 13100 -a 0 -w 4 --force --opencl-device-types 1,2 -O d:\krb5tgs.has
 Speed: 250 MH/s
 Elapsed Time: 9 Minutes
 
+
+## Cracking NTLMv2 Hashes from a Packet Capture
+You may be asked to recover a password from an SMB authentication (NTLMv2) from a Packet Capture.
+The following is a 9-step process for formatting the hash correctly to do this.
+https://research.801labs.org/cracking-an-ntlmv2-hash/
+
 ## To crack linux hashes you must first unshadow them
 
 `unshadow passwd-file.txt shadow-file.txt`  
@@ -203,8 +209,4 @@ Reference:
 https://www.netmux.com/blog/purple-rain-attack
 
 
-## Cracking NTLMv2 Hashes from a Packet Capture
-You may be asked to recover a password from an SMB authentication (NTLMv2) from a Packet Capture.
-The following is a 9-step process for formatting the hash correctly to do this.
-https://research.801labs.org/cracking-an-ntlmv2-hash/
 
