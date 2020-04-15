@@ -199,6 +199,12 @@ Purple Rain attack uses a combination of Prince, a dictionary and random Mutatio
 ```
 shuf dict.txt | pp64.bin --pw-min=8 | hashcat -a 0 -m #type -w 4 -O hashes.txt -g 300000
 ```
-
 Reference:  
 https://www.netmux.com/blog/purple-rain-attack
+
+
+## Cracking NTLMv2 Hashes from a Packet Capture
+You may be asked to recover a password from an SMB authentication (NTLMv2) from a Packet Capture.
+The following is a 9-step process for formatting the hash correctly to do this.
+https://research.801labs.org/cracking-an-ntlmv2-hash/
+
